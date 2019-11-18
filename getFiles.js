@@ -9,6 +9,9 @@ module.exports.handler = async (event) => {
       Bucket: process.env.BUCKET
     }).promise()
 
+    if (!list)
+      throw err
+
     const fileList = list.Contents.map(file => {
       return file.Key
     })
@@ -19,5 +22,9 @@ module.exports.handler = async (event) => {
     }
   } catch(err) {
     console.log(err)
+    return {
+      statusCode: 404,
+      body: JSON.stringify({message: 'Not found'})
+    }
   }
 }

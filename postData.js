@@ -8,6 +8,9 @@ module.exports.handler = async (event) => {
     const body = JSON.parse(event.body)
     const key = Math.floor(Math.random() * 100)
 
+    if(!body.message)
+      throw err
+    
     await s3.putObject({
       Body: body.message,
       Bucket: process.env.BUCKET,
@@ -15,13 +18,16 @@ module.exports.handler = async (event) => {
       Key: `${key}.txt`
     }).promise()
 
-    const response = {
+    return {
       statusCode: 301,
       body: JSON.stringify({ message: `Successfully created. ID: ${key}` })
     }
-
-    return response
   } catch(err) {
     console.log(err)
+    
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: 'Bad request' })
+    }
   }
 }
