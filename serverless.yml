@@ -5,7 +5,7 @@ provider:
   runtime: nodejs10.x
   region: sa-east-1
   memorySize: 256
-  environment:
+  environment: 
     BUCKET: serverlessawsbuckettest
   iamRoleStatements: 
     - Effect: Allow
