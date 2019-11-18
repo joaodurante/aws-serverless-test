@@ -1,0 +1,54 @@
+service: nodeless
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: sa-east-1
+  memorySize: 256
+  environment:
+    BUCKET: serverlessawsbuckettest
+  iamRoleStatements: 
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+        - s3:PutObject
+        - s3:ListBucket
+      Resource:
+        - "arn:aws:s3:::*"
+
+functions:
+  getFiles:
+    handler: getFiles.handler
+    environment: 
+      bucket: ${self:provider.environment.BUCKET}
+    events:
+      - http: 
+          path: file
+          method: get
+
+  getData:
+    handler: getData.handler
+    environment: 
+      bucket: ${self:provider.environment.BUCKET}
+    events:
+      - http: 
+          path: data/{id}
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true
+  
+  postData:
+    handler: postData.handler
+    environment:
+      bucket: ${self:provider.environment.BUCKET}
+    events:
+      - http:
+          path: data
+          method: post
+
+# serverless config credentials -o --provider aws --key AKIAU2CUXYLYUBUKZEKU --secret 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
+# serverless deploy -v
+# serverless invoke -f hello -l
+# serverless remove
