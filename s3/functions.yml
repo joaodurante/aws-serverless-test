@@ -1,0 +1,30 @@
+getFiles:
+  handler: s3/getFiles.handler
+  environment: 
+    bucket: ${self:provider.environment.BUCKET}
+  events:
+    - http: 
+        path: file
+        method: get
+
+getData:
+  handler: s3/getData.handler
+  environment: 
+    bucket: ${self:provider.environment.BUCKET}
+  events:
+    - http: 
+        path: data/{id}
+        method: get
+        request:
+          parameters:
+            paths:
+              id: true
+
+postData:
+  handler: s3/postData.handler
+  environment:
+    bucket: ${self:provider.environment.BUCKET}
+  events:
+    - http:
+        path: data
+        method: post
