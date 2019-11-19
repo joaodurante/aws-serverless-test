@@ -6,17 +6,12 @@ provider:
   region: sa-east-1
   memorySize: 256
   environment: 
-    BUCKET: serverlessawsbuckettest
+    ${file(config/environment.yml)}
   iamRoleStatements: 
-    - Effect: Allow
-      Action:
-        - s3:GetObject
-        - s3:PutObject
-        - s3:ListBucket
-      Resource:
-        - "arn:aws:s3:::*"
+    ${file(config/iamRoleStatements.yml)}
 
 functions:
+  # S3 functions
   getFiles: ${file(s3/functions.yml):getFiles}
   getData: ${file(s3/functions.yml):getData}
   postData: ${file(s3/functions.yml):postData}
