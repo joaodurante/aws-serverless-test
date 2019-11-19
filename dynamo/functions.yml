@@ -1,0 +1,23 @@
+list:
+  handler: dynamo/list.handler
+  events:
+    - http:
+        path: dynamo/data
+        method: get
+        cors: true
+
+# get:
+#   handler: dynamo/get.handler
+#   events:
+#     - http:
+#         path: dynamo/data/{id}
+#         method: get
+#         cors: true
+
+insert:
+  handler: dynamo/insert.handler
+  events:
+    - http:
+        path: dynamo/data
+        method: post
+        cors: true

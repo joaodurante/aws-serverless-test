@@ -1,1 +1,2 @@
 BUCKET: serverlessawsbuckettest
+DYNAMODB_TABLE: serverlessawsdynamotest

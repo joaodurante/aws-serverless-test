@@ -4,7 +4,7 @@ getFiles:
     bucket: ${self:provider.environment.BUCKET}
   events:
     - http: 
-        path: file
+        path: s3/file
         method: get
 
 getData:
@@ -13,7 +13,7 @@ getData:
     bucket: ${self:provider.environment.BUCKET}
   events:
     - http: 
-        path: data/{id}
+        path: s3/data/{id}
         method: get
         request:
           parameters:
@@ -26,5 +26,5 @@ postData:
     bucket: ${self:provider.environment.BUCKET}
   events:
     - http:
-        path: data
+        path: s3/data
         method: post

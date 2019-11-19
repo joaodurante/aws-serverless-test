@@ -16,6 +16,9 @@ functions:
   getData: ${file(s3/functions.yml):getData}
   postData: ${file(s3/functions.yml):postData}
 
+  # DynamoDB functions
+  insert: ${file(dynamo/functions.yml):insert}
+  list: ${file(dynamo/functions.yml):list}
 
 # serverless config credentials -o --provider aws --key AKIAU2CUXYLYUBUKZEKU --secret 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
 # serverless deploy -v
