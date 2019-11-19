@@ -21,3 +21,19 @@ insert:
         path: dynamo/data
         method: post
         cors: true
+
+update:
+  handler: dynamo/update.handler
+  events:
+    - http:
+        path: dynamo/data/{id}
+        method: put
+        cors: true
+
+delete:
+  handler: dynamo/delete.handler
+  events:
+    - http:
+        path: dynamo/data/{id}
+        method: delete
+        cors: true

@@ -20,6 +20,8 @@ functions:
   insert: ${file(dynamo/functions.yml):insert}
   list: ${file(dynamo/functions.yml):list}
   get: ${file(dynamo/functions.yml):get}
+  update: ${file(dynamo/functions.yml):update}
+  delete: ${file(dynamo/functions.yml):delete}
 
 # serverless config credentials -o --provider aws --key AKIAU2CUXYLYUBUKZEKU --secret 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
 # serverless deploy -v
