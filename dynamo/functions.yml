@@ -6,13 +6,13 @@ list:
         method: get
         cors: true
 
-# get:
-#   handler: dynamo/get.handler
-#   events:
-#     - http:
-#         path: dynamo/data/{id}
-#         method: get
-#         cors: true
+get:
+  handler: dynamo/get.handler
+  events:
+    - http:
+        path: dynamo/data/{id}
+        method: get
+        cors: true
 
 insert:
   handler: dynamo/insert.handler
