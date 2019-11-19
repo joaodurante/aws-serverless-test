@@ -1,27 +1,33 @@
 service: nodeless
 
+custom:
+  ${file(config/custom.yml)}
+
 provider:
   name: aws
   runtime: nodejs10.x
   region: sa-east-1
   memorySize: 256
-  environment: 
+  environment:
     ${file(config/environment.yml)}
   iamRoleStatements: 
     ${file(config/iamRoleStatements.yml)}
 
 functions:
   # S3 functions
-  getFiles: ${file(s3/functions.yml):getFiles}
-  getData: ${file(s3/functions.yml):getData}
-  postData: ${file(s3/functions.yml):postData}
+  s3GetFiles: ${file(s3/functions.yml):getFiles}
+  s3GetData: ${file(s3/functions.yml):getData}
+  s3PostData: ${file(s3/functions.yml):postData}
 
   # DynamoDB functions
-  insert: ${file(dynamo/functions.yml):insert}
-  list: ${file(dynamo/functions.yml):list}
-  get: ${file(dynamo/functions.yml):get}
-  update: ${file(dynamo/functions.yml):update}
-  delete: ${file(dynamo/functions.yml):delete}
+  dynamoInsert: ${file(dynamo/functions.yml):insert}
+  dynamoList: ${file(dynamo/functions.yml):list}
+  dynamoGet: ${file(dynamo/functions.yml):get}
+  dynamoUpdate: ${file(dynamo/functions.yml):update}
+  dynamoDelete: ${file(dynamo/functions.yml):delete}
+
+  # RDS functions
+  rdsInsert: ${file(rds/functions.yml):insert}
 
 resources:
   Resources:

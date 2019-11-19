@@ -7,6 +7,7 @@ const db = new aws.DynamoDB.DocumentClient()
 module.exports.handler = async (event) => {
   try {
     const timestamp = new Date().getTime()
+    const id = uuid.v1()
     const data = JSON.parse(event.body)
 
     if (!data.message)
@@ -15,11 +16,12 @@ module.exports.handler = async (event) => {
     const params = {
         TableName: process.env.DYNAMODB_TABLE,
         Item: {
-            id: uuid.v1(),
+            id: id,
             message: data.message,
             createdAt: timestamp,
             updateAt: timestamp
-        }
+        },
+        ReturnValues: 'ALL_OLD'
     }
 
     const res = await db.put(params).promise()
@@ -33,7 +35,7 @@ module.exports.handler = async (event) => {
     }else{
         return {
             statusCode: 301,
-            body: JSON.stringify({message: 'Successfully inserted', result: res})
+            body: JSON.stringify({message: 'Successfully inserted', data: {id, message: data.message}})
         }
     }
         

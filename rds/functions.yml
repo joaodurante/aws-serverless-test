@@ -1,0 +1,7 @@
+insert:
+  handler: rds/insert.handler
+  events:
+    - http:
+        path: /rds/data
+        method: post
+        cors: true

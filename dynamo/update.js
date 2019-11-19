@@ -41,7 +41,7 @@ module.exports.handler = async (event) => {
     } catch(err){
         console.log(err)
         return {
-            statusCode: err.status || 404,
+            statusCode: err.statusCode || 404,
             body: JSON.stringify({message: err.message || 'Failed to fetch'})
         }
     }
