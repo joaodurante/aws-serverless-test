@@ -1,0 +1,16 @@
+TestDynamoDb:
+  Type: 'AWS::DynamoDB::Table'
+  DeletionPolicy: Retain        # With the DeletionPolicy attribute you can preserve or (in some cases) backup a resource when its stack is deleted. DEFAULT: Delete
+  Properties:
+    AttributeDefinitions:
+      -
+        AttributeName: id
+        AttributeType: S
+    KeySchema:                  # Represents a single element of a key schema. A key schema specifies the attributes that make up the primary key of a table, or the key attributes of an index.
+      -
+        AttributeName: id       # The name of a key attribute
+        KeyType: HASH           # The role that this key attribute will assume
+    ProvisionedThroughput:      # Represents the provisioned throughput settings for a specified table or index.
+      ReadCapacityUnits: 1      # The maximum number of strongly consistent reads consumed per second before DynamoDB returns a ThrottlingException
+      WriteCapacityUnits: 1     # The maximum number of writes consumed per second before DynamoDB returns a ThrottlingException
+    TableName: ${self:provider.environment.DYNAMODB_TABLE}

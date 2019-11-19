@@ -23,6 +23,10 @@ functions:
   update: ${file(dynamo/functions.yml):update}
   delete: ${file(dynamo/functions.yml):delete}
 
+resources:
+  Resources:
+    ${file(config/resources.yml)}
+
 # serverless config credentials -o --provider aws --key AKIAU2CUXYLYUBUKZEKU --secret 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
 # serverless deploy -v
 # serverless invoke -f hello -l
