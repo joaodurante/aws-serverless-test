@@ -2,11 +2,4 @@
 BUCKET: ${self:custom.BUCKET}
 
 # Dynamo
-DYNAMODB_TABLE: ${self:custom.DYNAMO_TABLE}
-
-# Rds
-POSTGRE_HOST: ${self:custom.POSTGRE_HOST}
-POSTGRE_PORT: ${self:custom.POSTGRE_PORT}
-POSTGRE_DB_NAME: ${self:custom.POSTGRE_DB_NAME}
-POSTGRE_USERNAME: ${self:custom.POSTGRE_USERNAME}
-POSTGRE_PASSWORD: ${self:custom.POSTGRE_PASSWORD}
+DYNAMODB_TABLE: ${self:custom.DYNAMODB_TABLE}

@@ -1,9 +1,5 @@
+# S3 Bucket
 BUCKET: serverlessawsbuckettest
 
+# DynamoDB
 DYNAMODB_TABLE: serverlessawsdynamotest
-
-POSTGRE_HOST: Fn::GetAtt: [PostgreSqlRDSInstance, Endpoint.Address] # The Fn::GetAtt intrinsic function returns the value of an attribute from a resource in the template.
-POSTGRE_PORT: Fn::GetAtt: [PostgreSqlRDSInstance, Endpoint.Port]
-POSTGRE_DB_NAME: serverlessawspostgretest
-POSTGRE_USERNAME: postgres
-POSTGRE_PASSWORD: adminadmin
