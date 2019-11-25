@@ -1,5 +1,0 @@
-POSTGRE_HOST: serverlessawspostgretest.cbgecuy4xxow.sa-east-1.rds.amazonaws.com
-POSTGRE_PORT: 5432
-POSTGRE_DB_NAME: serverlessawspostgretest
-POSTGRE_USERNAME: postgres
-POSTGRE_PASSWORD: adminadmin
