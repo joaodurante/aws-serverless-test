@@ -3,3 +3,10 @@ BUCKET: serverlessawsbuckettest
 
 # DynamoDB
 DYNAMODB_TABLE: serverlessawsdynamotest
+
+# RDS
+POSTGRE_HOST: ${file(config/dbAttributes):POSTGRE_HOST}
+POSTGRE_PORT: ${file(config/dbAttributes):POSTGRE_PORT}
+POSTGRE_DB_NAME: ${file(config/dbAttributes):POSTGRE_DB_NAME}
+POSTGRE_USERNAME: ${file(config/dbAttributes):POSTGRE_USERNAME}
+POSTGRE_PASSWORD: ${file(config/dbAttributes):POSTGRE_PASSWORD}

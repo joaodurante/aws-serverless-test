@@ -26,6 +26,10 @@ functions:
   dynamoUpdate: ${file(dynamo/functions.yml):update}
   dynamoDelete: ${file(dynamo/functions.yml):delete}
 
+  # RDS
+  rdsInsert: ${file(rds/functions.yml):insert}
+  rdsList: ${file(rds/functions.yml):list}
+
 resources:
   Resources:
     ${file(config/resources.yml)}
