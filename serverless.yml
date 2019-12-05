@@ -10,8 +10,10 @@ provider:
   memorySize: 256
   environment:
     ${file(config/environment.yml)}
-  iamRoleStatements: 
+  iamRoleStatements:
     ${file(config/iamRoleStatements.yml)}
+  vpc:
+    ${file(config/vpc.yml)}
 
 functions:
   # S3 functions

@@ -1,7 +1,6 @@
 'use strict'
 
 const { Client } = require('pg')
-const { createTable } = require('./common/createTable')
 
 module.exports.handler = async (event) => {
     try{
@@ -9,30 +8,29 @@ module.exports.handler = async (event) => {
         const client = new Client({
             host: process.env.POSTGRE_HOST,
             port: process.env.POSTGRE_PORT,
-            database: process.env.POSTGRE_DATABASE,
-            user: process.env.POSTGRE_USER,
+            user: process.env.POSTGRE_USERNAME,
             password: process.env.POSTGRE_PASSWORD
         })
+        await client.connect()
 
-        client.connect()
-        await createTable(client)
-
-        const data = await client.query(`
-            INSERT INTO test VALUES ($1::varchar)
-        `, [body.message])
-
+        const data = await client.query(
+            'INSERT INTO test(message) VALUES ($1::varchar) RETURNING *',
+            [body.message]
+        )
+        
+        client.end()
         if(data.rows[0]){
             return {
-                statusCode: 301,
-                body: JSON.stringify({message: `Successfully created`, result: data.rows[0]})
+                statusCode: 201,
+                body: JSON.stringify({message: 'Successfully created', result: data.rows[0]})
             }
         }else
-            throw err
+            throw new Error('Failed to insert')
     } catch(err) {
         console.log(err)
         return {
             statusCode: err.statusCode || 501,
-            body: JSON.stringify({message: err.message || `Failed to insert`})
+            body: JSON.stringify({message: err.message || 'Failed to insert'})
         }
     }
 }

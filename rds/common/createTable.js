@@ -1,4 +1,4 @@
-module.exports.createTable = (client) => {
+module.exports.createTable = async (client) => {
     await client.query(`
         CREATE TABLE IF NOT EXISTS test(
             id SERIAL NOT NULL PRIMARY KEY,
