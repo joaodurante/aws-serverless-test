@@ -31,10 +31,13 @@ functions:
   # RDS
   rdsInsert: ${file(rds/functions.yml):insert}
   rdsList: ${file(rds/functions.yml):list}
+  rdsGet: ${file(rds/functions.yml):get}
+  rdsUpdate: ${file(rds/functions.yml):update}
+  rdsDelete: ${file(rds/functions.yml):delete}
 
-resources:
-  Resources:
-    ${file(config/resources.yml)}
+# resources:
+#   Resources:
+#     ${file(config/resources.yml)}
 
 # serverless deploy -v
 # serverless invoke -f hello -l

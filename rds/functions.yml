@@ -13,3 +13,27 @@ list:
         path: rds/data
         method: get
         cors: true
+
+get:
+  handler: rds/get.handler
+  events:
+    - http:
+        path: rds/data/{id}
+        method: get
+        cors: true
+
+update:
+  handler: rds/update.handler
+  events:
+    - http:
+        path: rds/data/{id}
+        method: patch
+        cors: true
+
+delete:
+  handler: rds/delete.handler
+  events:
+    - http:
+        path: rds/data/{id}
+        method: delete
+        cors: true
