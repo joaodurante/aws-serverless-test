@@ -1,3 +1,14 @@
+authorize:
+  handler: dynamo/auth/authorize.handler
+
+login:
+  handler: dynamo/auth/login.handler
+  events:
+    - http:
+        path: dynamo/login
+        method: post
+        cors: true
+
 list:
   handler: dynamo/list.handler
   events:
@@ -37,3 +48,4 @@ delete:
         path: dynamo/data/{id}
         method: delete
         cors: true
+        authorizer: authorize

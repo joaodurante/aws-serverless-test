@@ -22,11 +22,14 @@ functions:
   s3PostData: ${file(s3/functions.yml):postData}
 
   # DynamoDB functions
+  dynamoAuthorizer: ${file(dynamo/functions.yml):authorize}
+  dynamoLogin: ${file(dynamo/functions.yml):login}
   dynamoInsert: ${file(dynamo/functions.yml):insert}
   dynamoList: ${file(dynamo/functions.yml):list}
   dynamoGet: ${file(dynamo/functions.yml):get}
   dynamoUpdate: ${file(dynamo/functions.yml):update}
   dynamoDelete: ${file(dynamo/functions.yml):delete}
+
 
   # RDS
   rdsInsert: ${file(rds/functions.yml):insert}
@@ -42,3 +45,4 @@ functions:
 # serverless deploy -v
 # serverless invoke -f hello -l
 # serverless remove
+# npm install --arch=x64 --platform=linux
